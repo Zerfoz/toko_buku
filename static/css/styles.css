@@ -1,0 +1,53 @@
+.col {
+    border: 1px solid green
+}
+
+body {
+    padding-bottom: 60px;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #f8f9fa;
+    padding: 10px;
+    text-align: left;
+}
+
+.footer-logo {
+    height: 40px;
+    vertical-align: middle;
+}
+
+.navbar {
+    height: 70px;
+}
+
+.navbar-brand {
+    padding: 0;
+}
+
+.navbar-brand img {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.navbar-nav {
+    margin-left: auto;
+}
+
+.navbar-nav .nav-link {
+    margin-left: 10px;
+}
+
+.container {
+    text-align: center;
+    margin-top: 100px;
+}
+
+.search-form {
+    margin-bottom: 20px;
+}

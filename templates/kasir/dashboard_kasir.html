@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dashboard Kasir</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <img class="footer-logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="http://127.0.0.1:5000/dashboard_kasir">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://127.0.0.1:5000/tabel_penjualan">Data Penjualan</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://127.0.0.1:5000/dashboard_kasir_databuku">Data Buku</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-danger" href="http://127.0.0.1:5000/"
+                        onclick="return confirm('Are you sure you want to logout?')">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Welcome to Kasir Dashboard</h1>
+        <h3>Informasi Buku Terjual</h3>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th colspan="4">Buku Paling Banyak Terjual</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for buku in populer_buku %}
+                        <tr>
+                            <td>{{ buku.Id_buku }}</td>
+                            <td>{{ buku.Judul }}</td>
+                            <td>{{ buku.Penulis }}</td>
+                            <td>{{ buku.jumlah_terjual }}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="image-row">
+                                {% if buku.Images %}
+                                <img src="{{ url_for('static', filename='images/' + buku.Images) }}" alt="Gambar Buku"
+                                    class="table-img">
+                                {% else %}
+                                Gambar tidak tersedia
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th colspan="4">Buku Paling Sedikit Terjual</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for buku in unpopuler_buku %}
+                        <tr>
+                            <td>{{ buku.Id_buku }}</td>
+                            <td>{{ buku.Judul }}</td>
+                            <td>{{ buku.Penulis }}</td>
+                            <td>{{ buku.jumlah_terjual }}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="image-row">
+                                {% if buku.Images %}
+                                <img src="{{ url_for('static', filename='images/' + buku.Images) }}" alt="Gambar Buku"
+                                    class="table-img">
+                                {% else %}
+                                Gambar tidak tersedia
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .table-img {
+            max-width: 400px;
+            max-height: 400px;
+        }
+    </style>
+
+
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+</body>
+
+</html>

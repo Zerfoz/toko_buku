@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dashboard Kasir</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <img class="footer-logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="http://127.0.0.1:5000/dashboard_kasir">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://127.0.0.1:5000/tabel_penjualan">Data Penjualan</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://127.0.0.1:5000/dashboard_kasir_databuku">Data Buku</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-danger" href="http://127.0.0.1:5000/"
+                        onclick="return confirm('Are you sure you want to logout?')">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div>
+        <a href="{{ url_for('dashboard_kasir_databuku') }}">Kembali ke Dashboard</a>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+</body>
+
+</html>

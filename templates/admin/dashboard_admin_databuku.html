@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dashboard Admin</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        .table-img {
+            max-width: 100px;
+            max-height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <img class="footer-logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="http://127.0.0.1:5000/dashboard_admin">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://127.0.0.1:5000/dashboard_admin_databuku">Data Buku</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn nav-link text-danger" href="http://127.0.0.1:5000/"
+                        onclick="return confirm('Apakah kamu yakin ingin logout?')">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Selamat datang di Dashboard Admin</h1>
+
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Judul</th>
+                            <th>Penulis</th>
+                            <th>Penerbit</th>
+                            <th>Tahun Terbit</th>
+                            <th>Harga</th>
+                            <th>Jumlah Stok</th>
+                            <th>Gambar</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for buku in data_buku %}
+                        <tr>
+                            <td>{{ buku.Id_buku }}</td>
+                            <td>{{ buku.Judul }}</td>
+                            <td>{{ buku.Penulis }}</td>
+                            <td>{{ buku.Penerbit }}</td>
+                            <td>{{ buku.Tahun_terbit }}</td>
+                            <td>{{ buku.Harga }}</td>
+                            <td>{{ buku.Jumlah_stok }}</td>
+                            <td>
+                                {% if buku.Images %}
+                                <img src="{{ url_for('static', filename='images/' + buku.Images) }}" alt="Gambar Buku"
+                                    class="table-img">
+                                {% else %}
+                                Gambar tidak tersedia
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="/ubah_data_buku/{{ buku.Id_buku }}" class="btn btn-primary">Ubah</a>
+                                <a href="/hapus_data_buku/{{ buku.Id_buku }}" class="btn btn-danger">Hapus</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <a href="/tambah_data_buku" class="btn btn-success">Tambah Data</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+</body>
+
+</html>
